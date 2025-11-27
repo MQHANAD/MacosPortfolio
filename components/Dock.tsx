@@ -21,12 +21,17 @@ const apps = [
     id: "mail",
     name: "Mail",
     icon: "5.svg",
-  }, // Using Messages icon as Mail alternative since Mail icon is hard to get
+  },
+  {
+    id: "snake",
+    name: "Snake",
+    icon: "snake.svg", // Snake icon
+  },
 ] as const;
 
 export default function Dock() {
   return (
-    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-white/20 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl flex items-end z-50">
+    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-white/20 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl flex items-end z-50 max-w-[90vw] overflow-x-auto p-3 gap-6">
       {apps.map((app) => (
         <AppIcon
           key={app.id}

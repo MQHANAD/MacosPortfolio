@@ -19,7 +19,8 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
   experience: [
     {
       company: "China Oilfield Services Limited (COSL)",
-      role: "Software Developer (China)",
+      role: "Software Developer",
+      location: "Tianjin, China",
       date: "June 2025 - August 2025",
       description: "Developed a comprehensive conference room management system using Next.js and modern web technologies.",
       tech: ["Next.js", "Tailwind CSS", "DaisyUI"]
@@ -27,6 +28,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
     {
       company: "Energy Week 2",
       role: "Leader of tech committee",
+      location: "Dhahran, SA",
       date: "August 2025 - September 2025",
       description: "Led the technical committee for Energy Week 2, managing a team to develop the event website, handle registrations, and ensure smooth IT operations throughout the event.",
       tech: ["Next.js", "Node.js", "Firebase"]
@@ -131,7 +133,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
     }
   ],
   skills: [
-    "React", "Node.js", "JavaScript", "Python", "NoSQL", "SQL", 
+    "React", "Node.js", "JavaScript", "Python", "NoSQL", "SQL",
     "Docker", "Git", "React Native", "Flutter", "Next.js", "Firebase"
   ]
 };

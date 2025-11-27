@@ -4,7 +4,7 @@ import { useDesktop } from "../context/DesktopContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface AppIconProps {
-  id: "finder" | "safari" | "terminal" | "mail" | "calculator";
+  id: "finder" | "safari" | "terminal" | "mail" | "calculator" | "snake";
   name: string;
   icon: string;
   isDock?: boolean;
@@ -44,10 +44,10 @@ export default function AppIcon({
     return (
       <div className="group flex flex-col items-center relative cursor-pointer overflow-visible">
         <motion.button
-          whileHover={{ scale: 1.2, translateY: -10 }}
+          whileHover={{ scale: 1, translateY: -4 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleClick}
-          className="w-18 h-18 rounded-2xl flex items-center justify-center transition-all duration-200 cursor-pointer overflow-visible"
+          className="w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-50 cursor-pointer overflow-visible"
         >
           <img
             src={icon}
@@ -56,9 +56,8 @@ export default function AppIcon({
           />
         </motion.button>
         <div
-          className={`w-1 h-1 rounded-full bg-gray-400 absolute bottom-2 ${
-            isOpen ? "opacity-100" : "opacity-0"
-          }`}
+          className={`w-1 h-1 rounded-full bg-gray-400 absolute -bottom-2 ${isOpen ? "opacity-100" : "opacity-0"
+            }`}
         />
         <span className="absolute -top-10 bg-gray-800/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none backdrop-blur-sm border border-white/10">
           {name}

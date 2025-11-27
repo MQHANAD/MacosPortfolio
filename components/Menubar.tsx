@@ -22,7 +22,11 @@ export default function Menubar() {
   return (
     <div className="fixed top-0 left-0 right-0 h-8 bg-[#ffffff66] backdrop-blur-2xl border-b border-[#ffffff20] flex justify-between items-center px-5 text-[13px] text-white shadow-sm z-50 select-none">
       <div className="flex items-center gap-6">
-        <Apple size={18} className="fill-white" />
+        <img
+          src="/apple.svg"
+          alt="Apple"
+          className="w-5 h-5"
+        />
         <span className="font-bold tracking-wide">
           {getAppName(activeWindow)}
         </span>
@@ -50,9 +54,15 @@ export default function Menubar() {
 
       <div className="flex items-center gap-5">
         <div className="hidden sm:flex gap-4 items-center">
-          <Battery size={18} className="rotate-90" />
           <Wifi size={18} />
-          <Search size={16} />
+          <div className="flex items-center gap-1">
+            <span>64%</span>
+            <img
+              src="/bettary.svg"
+              alt="Apple"
+              className="w-5 h-5"
+            />
+          </div>
           <RotateCcw size={16} />
         </div>
         <span>{format(time, "EEE d MMM HH:mm")}</span>
