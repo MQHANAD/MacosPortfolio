@@ -35,8 +35,8 @@ export default function Window({ id, title, children }: WindowProps) {
         opacity: windowState.isMinimized ? 0 : 1,
         y: windowState.isMinimized ? 500 : 0,
         width: windowState.isMaximized ? '100vw' : isMobile ? '95vw' : '60vw',
-        height: windowState.isMaximized ? 'calc(100vh - 2rem)' : isMobile ? '80vh' : '60vh',
-        top: windowState.isMaximized ? '2rem' : '10%',
+        height: windowState.isMaximized ? 'calc(100vh - 2rem)' : isMobile ? '70vh' : '60vh',
+        top: windowState.isMaximized ? '2rem' : isMobile ? '5%' : '10%',
         left: windowState.isMaximized ? 0 : isMobile ? '2.5%' : '20%',
         x: windowState.isMaximized ? 0 : undefined // Reset x when maximized
       }}

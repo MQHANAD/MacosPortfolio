@@ -47,7 +47,7 @@ export default function AppIcon({
           whileHover={{ scale: 1, translateY: -4 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleClick}
-          className="w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-50 cursor-pointer overflow-visible"
+          className="w-10 h-10 md:w-12 md:h-12 rounded-2xl flex items-center justify-center transition-all duration-50 cursor-pointer overflow-visible"
         >
           <img
             src={icon}

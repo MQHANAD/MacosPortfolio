@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { Image, Images, ArrowLeft, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useIsMobile } from '../../hooks/use-mobile';
 import { cn } from '@/lib/utils';
@@ -230,11 +231,12 @@ export default function PhotosApp({ initialAlbum = null }: PhotosAppProps) {
         </div>
       </div>
 
-      {/* Lightbox */}
-      {lightboxIndex !== null && lightboxPhotos[lightboxIndex] && (
+      {/* Lightbox — portaled to body to avoid overflow clipping from Window */}
+      {lightboxIndex !== null && lightboxPhotos[lightboxIndex] && createPortal(
         <div
           className="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center"
           onClick={closeLightbox}
+          onPointerDown={(e) => e.stopPropagation()}
         >
           {/* Close button */}
           <button
@@ -282,7 +284,8 @@ export default function PhotosApp({ initialAlbum = null }: PhotosAppProps) {
           <div className="absolute bottom-4 text-white/50 text-sm">
             {lightboxIndex + 1} / {lightboxPhotos.length}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

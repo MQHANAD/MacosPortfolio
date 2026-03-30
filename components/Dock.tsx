@@ -37,7 +37,7 @@ const apps = [
 
 export default function Dock() {
   return (
-    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-white/20 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl flex items-end z-50 max-w-[90vw] overflow-x-auto p-3 gap-6">
+    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-white/20 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl flex items-end z-50 max-w-[95vw] p-2 gap-3 md:p-3 md:gap-6">
       {apps.map((app) => (
         <AppIcon
           key={app.id}
