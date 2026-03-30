@@ -1,12 +1,23 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
-import { User, Briefcase, FileText, Download, Menu } from 'lucide-react';
+import { User, Briefcase, FileText, Download, Menu, Camera } from 'lucide-react';
 import { portfolioData } from '../../data/portfolio';
 import { useIsMobile } from '../../hooks/use-mobile';
 import { cn } from '@/lib/utils';
+import { albums } from '../../data/photos';
 
 type Tab = 'about' | 'experience' | 'documents';
 
-export default function FinderApp() {
+const experienceAlbumMap: Record<string, string> = {
+  'China Oilfield Services Limited (COSL)': 'cosl',
+  'Energy Week 2': 'ew',
+};
+
+interface FinderAppProps {
+  onOpenAlbum?: (albumId: string) => void;
+}
+
+export default function FinderApp({ onOpenAlbum }: FinderAppProps) {
   const [activeTab, setActiveTab] = useState<Tab>('about');
   const isMobile = useIsMobile();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -117,6 +128,33 @@ export default function FinderApp() {
                         <span key={t} className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium border border-gray-200">{t}</span>
                       ))}
                     </div>
+                    {(() => {
+                      const albumId = experienceAlbumMap[exp.company];
+                      const album = albumId ? albums.find(a => a.id === albumId) : null;
+                      if (!album) return null;
+                      const preview = album.photos.slice(0, 4);
+                      return (
+                        <button
+                          onClick={() => onOpenAlbum?.(album.id)}
+                          className="mt-3 flex items-center gap-2 group cursor-pointer"
+                        >
+                          <div className="flex -space-x-2">
+                            {preview.map((photo, j) => (
+                              <img
+                                key={j}
+                                src={photo.src}
+                                alt={photo.alt}
+                                className="w-8 h-8 rounded-md object-cover border-2 border-white shadow-sm"
+                              />
+                            ))}
+                          </div>
+                          <span className="text-xs text-blue-500 font-medium group-hover:underline flex items-center gap-1">
+                            <Camera size={12} />
+                            View Photos ({album.photos.length})
+                          </span>
+                        </button>
+                      );
+                    })()}
                   </div>
                 ))}
               </div>

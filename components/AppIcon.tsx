@@ -4,7 +4,7 @@ import { useDesktop } from "../context/DesktopContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface AppIconProps {
-  id: "finder" | "safari" | "terminal" | "mail" | "calculator" | "snake";
+  id: "finder" | "safari" | "terminal" | "mail" | "calculator" | "snake" | "photos";
   name: string;
   icon: string;
   isDock?: boolean;

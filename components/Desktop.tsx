@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useDesktop } from "../context/DesktopContext";
 import Menubar from "./Menubar";
 import Dock from "./Dock";
 import Window from "./Window";
@@ -7,12 +9,17 @@ import { portfolioData } from "../data/portfolio";
 import LiquidEther from "../components/wallpaper";
 import {
   Globe,
+  ArrowLeft,
 } from "lucide-react";
 import { Terminal, TypingAnimation, AnimatedSpan } from "./terminal";
 import MailApp from "./apps/Mail";
 import SnakeGame from "./apps/SnakeGame";
+import PhotosApp from "./apps/Photos";
 
 export default function Desktop() {
+  const { openWindow, closeWindow } = useDesktop();
+  const [selectedProject, setSelectedProject] = useState<typeof portfolioData.projects[0] | null>(null);
+  const [photosInitialAlbum, setPhotosInitialAlbum] = useState<string | null>(null);
 
   return (
     <div className="h-screen bg-[#060010] w-screen overflow-hidden bg-cover bg-center relative select-none font-sans">
@@ -47,7 +54,10 @@ export default function Desktop() {
 
       {/* Windows */}
       <Window id="finder" title="Finder">
-        <FinderApp />
+        <FinderApp onOpenAlbum={(albumId) => {
+          setPhotosInitialAlbum(albumId);
+          openWindow('photos');
+        }} />
       </Window>
 
       <Window id="safari" title="Safari - Projects">
@@ -72,13 +82,17 @@ export default function Desktop() {
               {portfolioData.projects.map((project, i) => (
                 <div
                   key={i}
-                  className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col"
+                  onClick={() => {
+                    setSelectedProject(project);
+                    openWindow('projectDetails');
+                  }}
+                  className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col cursor-pointer"
                 >
                   <div className="h-40 bg-gray-200 relative overflow-hidden group">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                      className="w-full h-full object-contain transition-transform group-hover:scale-105"
                     />
                   </div>
                   <div className="p-4 flex-1 flex flex-col">
@@ -102,6 +116,7 @@ export default function Desktop() {
                       href={project.link}
                       target="_blank"
                       rel="noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="text-blue-500 text-sm font-medium hover:underline mt-auto flex items-center gap-1"
                     >
                       View Project <Globe size={12} />
@@ -112,6 +127,52 @@ export default function Desktop() {
             </div>
           </div>
         </div>
+      </Window>
+
+      <Window id="projectDetails" title={selectedProject ? selectedProject.title : "Project Details"}>
+        {selectedProject && (
+          <div className="flex flex-col h-full bg-white p-6 relative">
+            <button
+              onClick={() => closeWindow("projectDetails")}
+              className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4 w-fit transition-colors font-medium"
+            >
+              <ArrowLeft size={18} />
+              Back to Projects
+            </button>
+            <div className="h-40 sm:h-56 bg-gray-100 border border-gray-200 rounded-xl overflow-hidden mb-6 shrink-0 relative">
+              <img
+                src={selectedProject.image}
+                alt={selectedProject.title}
+                className="w-full h-full object-contain p-4 transition-transform hover:scale-105"
+              />
+            </div>
+            <div className="flex-1 overflow-auto">
+              <h2 className="text-3xl font-bold mb-4">{selectedProject.title}</h2>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {selectedProject.tech.map((t) => (
+                  <span key={t} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <div className="prose max-w-none text-gray-700">
+                <p className="text-lg leading-relaxed mb-4">{selectedProject.description}</p>
+                <h3 className="text-xl font-semibold mb-2">About the Project</h3>
+                <p className="leading-relaxed whitespace-pre-line">{selectedProject.details}</p>
+              </div>
+              <div className="mt-8 mb-4">
+                <a
+                  href={selectedProject.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  View Project <Globe size={18} />
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
       </Window>
 
       <Window id="terminal" title="Terminal - Skills">
@@ -142,6 +203,10 @@ export default function Desktop() {
 
       <Window id="snake" title="Snake Game">
         <SnakeGame />
+      </Window>
+
+      <Window id="photos" title="Photos">
+        <PhotosApp initialAlbum={photosInitialAlbum} />
       </Window>
 
       <Dock />

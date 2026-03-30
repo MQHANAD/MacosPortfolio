@@ -6,7 +6,7 @@ import { X, Minus, Maximize2 } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
 
 interface WindowProps {
-  id: 'finder' | 'safari' | 'terminal' | 'mail' | 'calculator' | 'snake';
+  id: 'finder' | 'safari' | 'terminal' | 'mail' | 'calculator' | 'snake' | 'projectDetails' | 'photos';
   title: string;
   children: React.ReactNode;
 }

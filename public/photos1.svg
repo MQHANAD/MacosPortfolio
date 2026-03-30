@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f5f5f7;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#e8e8ed;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="26" fill="url(#bg)"/>
+  <!-- Pinwheel petals -->
+  <g transform="translate(60,60)">
+    <!-- Red petal -->
+    <ellipse cx="0" cy="-18" rx="12" ry="22" fill="#FF3B30" transform="rotate(0)"/>
+    <!-- Orange petal -->
+    <ellipse cx="0" cy="-18" rx="12" ry="22" fill="#FF9500" transform="rotate(45)"/>
+    <!-- Yellow petal -->
+    <ellipse cx="0" cy="-18" rx="12" ry="22" fill="#FFCC00" transform="rotate(90)"/>
+    <!-- Green petal -->
+    <ellipse cx="0" cy="-18" rx="12" ry="22" fill="#34C759" transform="rotate(135)"/>
+    <!-- Teal petal -->
+    <ellipse cx="0" cy="-18" rx="12" ry="22" fill="#5AC8FA" transform="rotate(180)"/>
+    <!-- Blue petal -->
+    <ellipse cx="0" cy="-18" rx="12" ry="22" fill="#007AFF" transform="rotate(225)"/>
+    <!-- Purple petal -->
+    <ellipse cx="0" cy="-18" rx="12" ry="22" fill="#AF52DE" transform="rotate(270)"/>
+    <!-- Pink petal -->
+    <ellipse cx="0" cy="-18" rx="12" ry="22" fill="#FF2D55" transform="rotate(315)"/>
+    <!-- Center circle -->
+    <circle cx="0" cy="0" r="6" fill="white"/>
+  </g>
+</svg>

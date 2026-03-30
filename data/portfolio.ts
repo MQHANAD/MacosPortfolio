@@ -14,7 +14,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
       linkedin: "https://www.linkedin.com/in/muhannad-alduraywish-204a0b264",
       x: "https://x.com/mnd__0"
     },
-    profileImage: "https://mqhanad.github.io/Portfolio/Muhannad3.PNG"
+    profileImage: "/About/SWE363.png"
   },
   experience: [
     {
@@ -36,10 +36,18 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
   ],
   projects: [
     {
+      title: "Muhda",
+      description: "A modern web platform built to deliver personalized digital gifting experiences. It leverages human-centered design principles to turn standard gifting into an engaging, interactive game for users.",
+      details: "Built with Next.js, Tap Payments for checkout, Resend for email notifications, and Firebase for backend services.",
+      image: "/Projects/muhda.png",
+      link: "https://www.muhda.app/en",
+      tech: ["Next.js", "Tap", "Resend", "Firebase"]
+    },
+    {
       title: "COSL meeting",
       description: "Conference Room Management & Meeting System. A web application developed during a 2-month summer internship at COSL in China.",
       details: "This system allows users to manage conference rooms, schedule meetings, and view analytics for efficient utilization of resources. Built with Next.js, Tailwind CSS, and Framer Motion for animations.",
-      image: "https://mqhanad.github.io/Portfolio/offshore-platform.png",
+      image: "/Projects/coslMeeting.gif",
       link: "https://cosl-meetings.vercel.app/",
       tech: ["NextJS", "Tailwind", "DaisyUI"]
     },
@@ -47,7 +55,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
       title: "Energy Hub",
       description: "Official event platform for KFUPM’s Energy Hub. Developed to showcase energy-related events, student initiatives, and industry collaborations in a modern and engaging way.",
       details: "A bilingual (Arabic & English) web platform built for KFUPM’s Energy Hub initiative. It centralizes event management, promotes student innovation in energy, and connects academia with industry. Optimized for scalability and performance.",
-      image: "https://mqhanad.github.io/Portfolio/power.png",
+      image: "/Projects/EnergyHub.png",
       link: "https://energyhub.events/",
       tech: ["NextJS", "Firebase", "i18n"]
     },
@@ -55,7 +63,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
       title: "Rukn 📍",
       description: "This mobile app helps aspiring entrepreneurs find the best rental locations to open their shops.",
       details: "By analyzing data such as nearby services, demographics, competition, and more, the app recommends smart locations that increase the chances of business success.",
-      image: "https://mqhanad.github.io/Portfolio/arrows.png",
+      image: "/Projects/Rukn.png",
       link: "https://rukn.estate",
       tech: ["React Native", "Supabase", "Node.js"]
     },
@@ -63,7 +71,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
       title: "Weekly Planner Generator",
       description: "A web application that allows users to generate a printable planner grid between two dates and download it as a PDF.",
       details: "This is a responsive Weekly Planner web application that allows users to generate a printable planner grid between two dates and download it as a PDF. The interface supports theme switching and RTL (Right-to-Left) layout.",
-      image: "https://mqhanad.github.io/Portfolio/calendar.png",
+      image: "/Projects/weeklyPlanner.png",
       link: "https://mqhanad.github.io/weeklyPlannerGenerator/",
       tech: ["HTML", "CSS", "JavaScript"]
     },
@@ -71,7 +79,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
       title: "Lawwen",
       description: "A mobile application that allows users to explore, create, and share color palettes.",
       details: "The app provides an intuitive interface for designers and creatives to discover and save inspiring color combinations.",
-      image: "https://mqhanad.github.io/Portfolio/palette.PNG",
+      image: "/Projects/lawen.png",
       link: "https://github.com/MQHANAD/Lawwen/tree/main",
       tech: ["Flutter", "Firebase"]
     },
@@ -79,7 +87,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
       title: "Sen",
       description: "A cross-platform mobile application designed to simplify dental health diagnostics using AI technology.",
       details: "The app allows users to take a picture of their teeth through an integrated camera, then analyzes the image to provide accurate diagnoses and insights.",
-      image: "https://mqhanad.github.io/Portfolio/tooth.PNG",
+      image: "/Projects/Sen.png",
       link: "https://github.com/MQHANAD/Sen",
       tech: ["React Native", "Node.js", "MongoDB"]
     },
@@ -87,7 +95,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
       title: "POSitiveFlow",
       description: "Designed to streamline operations and enhance customer experiences for small to medium-sized businesses.",
       details: "This system integrates seamlessly with WhatsApp for sending digital receipts and managing customer loyalty programs.",
-      image: "https://mqhanad.github.io/Portfolio/POS.PNG",
+      image: "/Projects/Positiveflow.png",
       link: "https://github.com/mo-alkubaish/POSitiveflow",
       tech: ["Next.js", "Nest.js"]
     },
@@ -95,7 +103,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
       title: "Hit The Road Jack",
       description: "A game where you guide Jack as he drives away from his wife after an argument.",
       details: "Your goal is to help him avoid collisions with other cars and achieve high scores. One crash ends the game.",
-      image: "https://mqhanad.github.io/Portfolio/porsche.PNG",
+      image: "/Projects/hitTheRoadJack.png",
       link: "https://www.youtube.com/watch?v=yB_7P4pH5cI",
       tech: ["Unity", "C#"]
     },
@@ -103,7 +111,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
       title: "Flight Reservation System",
       description: "A desktop application designed with Enhanced Entity-Relationship (EER).",
       details: "It manages and books flights efficiently, providing a user-friendly interface for passengers and administrators.",
-      image: "https://mqhanad.github.io/Portfolio/plane.PNG",
+      image: "/Projects/flightRS.png",
       link: "https://youtu.be/iZbpk-FGGpQ",
       tech: ["C#", ".Net", "MySQL"]
     },
@@ -111,7 +119,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
       title: "File/Folder Visualizer",
       description: "A simple desktop application to visualize the capacity of files and folders using charts.",
       details: "Designed to follow design patterns: Observer pattern, Composite pattern.",
-      image: "https://mqhanad.github.io/Portfolio/viualizer.PNG",
+      image: "/Projects/File_Folder_visualizer.png",
       link: "https://youtu.be/eEKRFVAhiiM",
       tech: ["C#", ".Net"]
     },
@@ -119,7 +127,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
       title: "Shapes Drawing App",
       description: "A simple desktop application to draw various shapes on the screen.",
       details: "Designed to follow principles: Abstraction and Encapsulation, Single Responsibility Principle, Open-Closed Principle.",
-      image: "https://mqhanad.github.io/Portfolio/shapes.PNG",
+      image: "/Projects/shapesDrawing.png",
       link: "https://youtu.be/fUWjdxtmLRk",
       tech: ["C#", ".Net"]
     },
@@ -127,7 +135,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
       title: "Quran City",
       description: "This game was created as part of a hackathon called 'Challenge of Quranic Apps'.",
       details: "It's an open-world city consisting of 30 buildings, with each building representing a Juzu (part) of the Quran. Each building contains multiple Suras.",
-      image: "https://mqhanad.github.io/Portfolio/quran.PNG",
+      image: "/Projects/QuranCity.png",
       link: "https://youtu.be/SRWpIGJX-5I",
       tech: ["C#", "Unity"]
     }

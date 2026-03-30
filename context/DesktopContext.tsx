@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-type WindowId = 'finder' | 'safari' | 'terminal' | 'mail' | 'calculator' | 'snake';
+type WindowId = 'finder' | 'safari' | 'terminal' | 'mail' | 'calculator' | 'snake' | 'projectDetails' | 'photos';
 
 interface WindowState {
   id: WindowId;
@@ -33,6 +33,8 @@ const initialWindows: Record<WindowId, WindowState> = {
   mail: { id: 'mail', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 4 },
   calculator: { id: 'calculator', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 5 },
   snake: { id: 'snake', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 6 },
+  projectDetails: { id: 'projectDetails', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 7 },
+  photos: { id: 'photos', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 8 },
 };
 
 export function DesktopProvider({ children }: { children: ReactNode }) {

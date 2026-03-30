@@ -13,6 +13,11 @@ const apps = [
     icon: "3.svg",
   },
   {
+    id: "photos",
+    name: "Photos",
+    icon: "photos.png",
+  },
+  {
     id: "terminal",
     name: "Terminal",
     icon: "4.svg",
@@ -25,8 +30,9 @@ const apps = [
   {
     id: "snake",
     name: "Snake",
-    icon: "snake.svg", // Snake icon
+    icon: "snake.svg",
   },
+
 ] as const;
 
 export default function Dock() {
