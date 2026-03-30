@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { Image, Images, ArrowLeft, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useIsMobile } from '../../hooks/use-mobile';
@@ -18,6 +18,17 @@ export default function PhotosApp({ initialAlbum = null }: PhotosAppProps) {
   const [selectedAlbum, setSelectedAlbum] = useState<string | null>(initialAlbum);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [lightboxPhotos, setLightboxPhotos] = useState<Photo[]>([]);
+  const [mounted, setMounted] = useState(false);
+
+  // Track latest values in refs for stable callbacks
+  const lightboxIndexRef = useRef(lightboxIndex);
+  const lightboxPhotosRef = useRef(lightboxPhotos);
+  lightboxIndexRef.current = lightboxIndex;
+  lightboxPhotosRef.current = lightboxPhotos;
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (initialAlbum) {
@@ -26,34 +37,36 @@ export default function PhotosApp({ initialAlbum = null }: PhotosAppProps) {
     }
   }, [initialAlbum]);
 
-  const openLightbox = (photos: Photo[], index: number) => {
+  const openLightbox = useCallback((photos: Photo[], index: number) => {
     setLightboxPhotos(photos);
     setLightboxIndex(index);
-  };
+  }, []);
 
-  const closeLightbox = () => {
+  const closeLightbox = useCallback(() => {
     setLightboxIndex(null);
     setLightboxPhotos([]);
-  };
+  }, []);
 
   const navigateLightbox = useCallback((direction: 1 | -1) => {
-    if (lightboxIndex === null) return;
-    const next = lightboxIndex + direction;
-    if (next >= 0 && next < lightboxPhotos.length) {
+    const idx = lightboxIndexRef.current;
+    const photos = lightboxPhotosRef.current;
+    if (idx === null) return;
+    const next = idx + direction;
+    if (next >= 0 && next < photos.length) {
       setLightboxIndex(next);
     }
-  }, [lightboxIndex, lightboxPhotos.length]);
+  }, []);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (lightboxIndex === null) return;
+      if (lightboxIndexRef.current === null) return;
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowLeft') navigateLightbox(-1);
       if (e.key === 'ArrowRight') navigateLightbox(1);
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, [lightboxIndex, navigateLightbox]);
+  }, [closeLightbox, navigateLightbox]);
 
   const handleAlbumClick = (albumId: string) => {
     setSelectedAlbum(albumId);
@@ -74,7 +87,6 @@ export default function PhotosApp({ initialAlbum = null }: PhotosAppProps) {
     }
   };
 
-  // Determine which photos to show in the grid
   const currentPhotos = (() => {
     if (view === 'library') return allPhotos;
     if (selectedAlbum) {
@@ -85,13 +97,13 @@ export default function PhotosApp({ initialAlbum = null }: PhotosAppProps) {
   })();
 
   const currentAlbum = selectedAlbum ? albums.find((a) => a.id === selectedAlbum) : null;
+  const isLightboxOpen = lightboxIndex !== null && lightboxPhotos[lightboxIndex];
 
   return (
     <div className="flex h-full font-sans relative bg-white">
       {/* Desktop Sidebar */}
       {!isMobile && (
         <div className="w-48 bg-gray-100/80 backdrop-blur-md border-r border-gray-200 p-3 flex flex-col gap-0.5 text-sm select-none shrink-0">
-          {/* Library */}
           <button
             onClick={() => handleSidebarNav('library')}
             className={cn(
@@ -105,7 +117,6 @@ export default function PhotosApp({ initialAlbum = null }: PhotosAppProps) {
             <span className="font-medium">Library</span>
           </button>
 
-          {/* Albums Section */}
           <div className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mt-4 mb-1 px-2">
             Albums
           </div>
@@ -171,14 +182,12 @@ export default function PhotosApp({ initialAlbum = null }: PhotosAppProps) {
 
         {/* Content Area */}
         <div className="flex-1 overflow-auto">
-          {/* Library View — photo grid */}
           {view === 'library' && (
             <div className="p-[2px]">
               <PhotoGrid photos={allPhotos} onPhotoClick={(i) => openLightbox(allPhotos, i)} />
             </div>
           )}
 
-          {/* Albums View — album list or album photos */}
           {view === 'albums' && !selectedAlbum && (
             <div className="p-4">
               <h2 className="text-lg font-semibold text-gray-800 mb-4">Albums</h2>
@@ -207,7 +216,6 @@ export default function PhotosApp({ initialAlbum = null }: PhotosAppProps) {
 
           {view === 'albums' && selectedAlbum && currentAlbum && (
             <div>
-              {/* Album header with back button (mobile only, desktop uses sidebar) */}
               {isMobile && (
                 <div className="px-3 py-2 border-b border-gray-100 flex items-center gap-2">
                   <button
@@ -231,62 +239,77 @@ export default function PhotosApp({ initialAlbum = null }: PhotosAppProps) {
         </div>
       </div>
 
-      {/* Lightbox — portaled to body to avoid overflow clipping from Window */}
-      {lightboxIndex !== null && lightboxPhotos[lightboxIndex] && createPortal(
-        <div
-          className="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center"
-          onClick={closeLightbox}
-          onPointerDown={(e) => e.stopPropagation()}
-        >
-          {/* Close button */}
-          <button
-            onClick={closeLightbox}
-            className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors cursor-pointer z-10"
-          >
-            <X size={24} />
-          </button>
-
-          {/* Previous */}
-          {lightboxIndex > 0 && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                navigateLightbox(-1);
-              }}
-              className="absolute left-4 text-white/50 hover:text-white transition-colors cursor-pointer z-10"
-            >
-              <ChevronLeft size={36} />
-            </button>
-          )}
-
-          {/* Photo */}
-          <img
-            src={lightboxPhotos[lightboxIndex].src}
-            alt={lightboxPhotos[lightboxIndex].alt}
-            onClick={(e) => e.stopPropagation()}
-            className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl"
-          />
-
-          {/* Next */}
-          {lightboxIndex < lightboxPhotos.length - 1 && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                navigateLightbox(1);
-              }}
-              className="absolute right-4 text-white/50 hover:text-white transition-colors cursor-pointer z-10"
-            >
-              <ChevronRight size={36} />
-            </button>
-          )}
-
-          {/* Counter */}
-          <div className="absolute bottom-4 text-white/50 text-sm">
-            {lightboxIndex + 1} / {lightboxPhotos.length}
-          </div>
-        </div>,
+      {/* Lightbox — only render portal after client mount to avoid hydration mismatch */}
+      {mounted && isLightboxOpen && createPortal(
+        <Lightbox
+          photos={lightboxPhotos}
+          index={lightboxIndex!}
+          onClose={closeLightbox}
+          onNavigate={navigateLightbox}
+        />,
         document.body
       )}
+    </div>
+  );
+}
+
+function Lightbox({
+  photos,
+  index,
+  onClose,
+  onNavigate,
+}: {
+  photos: Photo[];
+  index: number;
+  onClose: () => void;
+  onNavigate: (dir: 1 | -1) => void;
+}) {
+  const photo = photos[index];
+  if (!photo) return null;
+
+  return (
+    <div
+      className="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center"
+      onClick={onClose}
+      onPointerDown={(e) => e.stopPropagation()}
+      onMouseDown={(e) => e.stopPropagation()}
+    >
+      <button
+        onClick={(e) => { e.stopPropagation(); onClose(); }}
+        className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors cursor-pointer z-10"
+      >
+        <X size={24} />
+      </button>
+
+      {index > 0 && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onNavigate(-1); }}
+          className="absolute left-4 text-white/50 hover:text-white transition-colors cursor-pointer z-10"
+        >
+          <ChevronLeft size={36} />
+        </button>
+      )}
+
+      <img
+        src={photo.src}
+        alt={photo.alt}
+        onClick={(e) => e.stopPropagation()}
+        className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl select-none"
+        draggable={false}
+      />
+
+      {index < photos.length - 1 && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onNavigate(1); }}
+          className="absolute right-4 text-white/50 hover:text-white transition-colors cursor-pointer z-10"
+        >
+          <ChevronRight size={36} />
+        </button>
+      )}
+
+      <div className="absolute bottom-4 text-white/50 text-sm">
+        {index + 1} / {photos.length}
+      </div>
     </div>
   );
 }
