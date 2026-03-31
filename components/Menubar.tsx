@@ -5,9 +5,10 @@ import { Apple, Battery, Wifi, Search, RotateCcw } from "lucide-react";
 
 export default function Menubar() {
   const { activeWindow } = useDesktop();
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState<Date | null>(null);
 
   useEffect(() => {
+    setTime(new Date());
     const interval = setInterval(() => {
       setTime(new Date());
     }, 1000);
@@ -65,7 +66,7 @@ export default function Menubar() {
           </div>
           <RotateCcw size={16} />
         </div>
-        <span>{format(time, "EEE d MMM HH:mm")}</span>
+        <span>{time ? format(time, "EEE d MMM HH:mm") : '\u00A0'}</span>
       </div>
     </div>
   );
