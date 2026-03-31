@@ -7,7 +7,13 @@ const GAME_SPEED = 150;
 
 export default function SnakeGame() {
     const isMobile = useIsMobile();
-    const CELL_SIZE = isMobile ? 15 : 20;
+    const [cellSize, setCellSize] = useState(20);
+
+    useEffect(() => {
+        setCellSize(isMobile ? 15 : 20);
+    }, [isMobile]);
+
+    const CELL_SIZE = cellSize;
 
     const INITIAL_SNAKE = [{ x: 10, y: 10 }];
     const INITIAL_DIRECTION = { x: 0, y: -1 };

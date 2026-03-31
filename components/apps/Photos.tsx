@@ -20,8 +20,14 @@ export default function PhotosApp({ initialAlbum = null }: PhotosAppProps) {
 
   const lightboxIndexRef = useRef(lightboxIndex);
   const lightboxPhotosRef = useRef(lightboxPhotos);
-  lightboxIndexRef.current = lightboxIndex;
-  lightboxPhotosRef.current = lightboxPhotos;
+
+  useEffect(() => {
+    lightboxIndexRef.current = lightboxIndex;
+  }, [lightboxIndex]);
+
+  useEffect(() => {
+    lightboxPhotosRef.current = lightboxPhotos;
+  }, [lightboxPhotos]);
 
   useEffect(() => {
     if (initialAlbum) {
