@@ -86,6 +86,15 @@ export default function LiquidEther({
   useEffect(() => {
     if (!mountRef.current) return;
 
+    // Check WebGL support before attempting to create renderer
+    try {
+      const testCanvas = document.createElement('canvas');
+      const gl = testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl');
+      if (!gl) return; // No WebGL support, silently skip
+    } catch {
+      return; // WebGL not available
+    }
+
     function makePaletteTexture(stops: string[]): THREE.DataTexture {
       let arr: string[];
       if (Array.isArray(stops) && stops.length > 0) {
@@ -1168,15 +1177,21 @@ export default function LiquidEther({
     container.style.position = container.style.position || "relative";
     container.style.overflow = container.style.overflow || "hidden";
 
-    const webgl = new WebGLManager({
-      $wrapper: container,
-      autoDemo,
-      autoSpeed,
-      autoIntensity,
-      takeoverDuration,
-      autoResumeDelay,
-      autoRampDuration,
-    });
+    let webgl: WebGLManager;
+    try {
+      webgl = new WebGLManager({
+        $wrapper: container,
+        autoDemo,
+        autoSpeed,
+        autoIntensity,
+        takeoverDuration,
+        autoResumeDelay,
+        autoRampDuration,
+      });
+    } catch {
+      // WebGL initialization failed — skip wallpaper gracefully
+      return;
+    }
     webglRef.current = webgl;
 
     const applyOptionsFromProps = () => {
