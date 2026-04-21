@@ -15,14 +15,18 @@ import { Terminal, TypingAnimation, AnimatedSpan } from "./terminal";
 import MailApp from "./apps/Mail";
 import SnakeGame from "./apps/SnakeGame";
 import PhotosApp from "./apps/Photos";
+import { usePreloadImages } from "../hooks/usePreloadImages";
 
 export default function Desktop() {
   const { openWindow, closeWindow } = useDesktop();
   const [selectedProject, setSelectedProject] = useState<typeof portfolioData.projects[0] | null>(null);
   const [photosInitialAlbum, setPhotosInitialAlbum] = useState<string | null>(null);
 
+  // Preload all images on mount for instant navigation
+  usePreloadImages();
+
   return (
-    <div className="h-screen bg-[#060010] w-screen overflow-hidden bg-cover bg-center relative select-none font-sans">
+    <div className="h-screen h-[100dvh] bg-[#060010] w-screen overflow-hidden bg-cover bg-center relative select-none font-sans">
       <Menubar />
       <LiquidEther
         colors={["#5227FF", "#FF9FFC", "#B19EEF"]}

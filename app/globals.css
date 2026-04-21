@@ -1,10 +1,13 @@
 @import "tailwindcss";
 
 /* Global Styles */
-body {
+html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  height: 100vh;
+  height: 100dvh;
+  background-color: #060010;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
