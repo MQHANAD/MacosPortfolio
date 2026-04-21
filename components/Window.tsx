@@ -49,7 +49,7 @@ export default function Window({ id, title, children }: WindowProps) {
       {/* Title Bar */}
       <div
         onPointerDown={(e) => {
-          dragControls.start(e);
+          if (!isMobile) dragControls.start(e);
           focusWindow(id);
         }}
         className="h-10 bg-[#dcdce0] border-b border-[#b6b6b6] flex items-center px-4 shrink-0 cursor-default select-none"
