@@ -64,7 +64,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
       description: "This mobile app helps aspiring entrepreneurs find the best rental locations to open their shops.",
       details: "By analyzing data such as nearby services, demographics, competition, and more, the app recommends smart locations that increase the chances of business success.",
       image: "/Projects/Rukn.png",
-      link: "https://rukn.estate",
+      link: "https://rukn-ten.vercel.app/",
       tech: ["React Native", "Supabase", "Node.js"]
     },
     {
