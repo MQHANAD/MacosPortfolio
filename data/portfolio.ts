@@ -36,6 +36,14 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
   ],
   projects: [
     {
+      title: "Semsem",
+      description: "A comprehensive B2B SaaS platform for veterinary clinics to streamline patient records, appointments, and billing, featuring an AI-powered clinical copilot.",
+      details: "Built on an AI-first, agentic architecture that enables full clinic operation via chat, automated billing, inventory management, and intelligent medical record processing.",
+      image: "/Projects/semsem.png",
+      link: "https://smsm-web-lime.vercel.app/",
+      tech: ["Next.js", "Tailwind CSS", "TypeScript", "AI Copilot"]
+    },
+    {
       title: "Muhda",
       description: "A modern web platform built to deliver personalized digital gifting experiences. It leverages human-centered design principles to turn standard gifting into an engaging, interactive game for users.",
       details: "Built with Next.js, Tap Payments for checkout, Resend for email notifications, and Firebase for backend services.",
