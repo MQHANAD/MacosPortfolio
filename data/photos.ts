@@ -12,6 +12,14 @@ export interface Album {
 
 export const albums: Album[] = [
   {
+    id: 'absar',
+    title: 'Absar Association',
+    coverPhoto: '/Absar/signing-ceremony.png',
+    photos: [
+      { src: '/Absar/signing-ceremony.png', alt: 'Absar Association' },
+    ],
+  },
+  {
     id: 'cosl',
     title: 'COSL Internship',
     coverPhoto: '/COSL/IMG_6855.jpg',

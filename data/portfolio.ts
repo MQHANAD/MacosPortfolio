@@ -18,6 +18,14 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
   },
   experience: [
     {
+      company: "Absar Association",
+      role: "Chief Technology Officer (CTO)",
+      location: "Saudi Arabia",
+      date: "2026 - Present",
+      description: "Architected and deployed a full-scale custom ecosystem (Financial Management, Admin Portal, Website) to replace a legacy third-party ERP, significantly reducing costs and streamlining operations. Engineered a robust accounting module and interactive KPI dashboards, driving the association's digital transformation and empowering data-driven decision-making.",
+      tech: ["Next.js", "TypeScript", "Firebase"]
+    },
+    {
       company: "China Oilfield Services Limited (COSL)",
       role: "Software Developer",
       location: "Tianjin, China",
@@ -35,6 +43,14 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
     }
   ],
   projects: [
+    {
+      title: "Absar",
+      description: "A full-scale custom ecosystem (Financial Management, Admin Portal, Website) built to replace Absar Association's legacy third-party ERP.",
+      details: "Architected and deployed as CTO to reduce costs and streamline operations, featuring a robust accounting module and interactive KPI dashboards that drive the association's digital transformation and data-driven decision-making.",
+      image: "/Projects/absar.png",
+      link: "https://abser.org.sa",
+      tech: ["Next.js", "TypeScript", "Firebase"]
+    },
     {
       title: "Semsem",
       description: "A comprehensive B2B SaaS platform for veterinary clinics to streamline patient records, appointments, and billing, featuring an AI-powered clinical copilot.",

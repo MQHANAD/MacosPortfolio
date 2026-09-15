@@ -9,6 +9,7 @@ import { albums } from '../../data/photos';
 type Tab = 'about' | 'experience' | 'documents';
 
 const experienceAlbumMap: Record<string, string> = {
+  'Absar Association': 'absar',
   'China Oilfield Services Limited (COSL)': 'cosl',
   'Energy Week 2': 'ew',
 };
