@@ -167,7 +167,7 @@ export default function FinderApp({ onOpenAlbum }: FinderAppProps) {
               <h2 className="text-2xl font-bold mb-6 border-b pb-2">Documents</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 <a
-                  href="/Muhannad-Alduraywish-FlowCV-Resume-20251127.pdf"
+                  href="/Muhannad-Alduraywish-Resume.pdf"
                   download="Muhannad-Alduraywish-Resume.pdf"
                   className="flex flex-col items-center gap-2 p-4 rounded-xl hover:bg-blue-50 cursor-pointer transition-colors group border border-transparent hover:border-blue-100"
                 >
