@@ -80,7 +80,7 @@ With an insatiable appetite for learning, I'm on a quest to absorb knowledge fro
       description: "Official event platform for KFUPM’s Energy Hub. Developed to showcase energy-related events, student initiatives, and industry collaborations in a modern and engaging way.",
       details: "A bilingual (Arabic & English) web platform built for KFUPM’s Energy Hub initiative. It centralizes event management, promotes student innovation in energy, and connects academia with industry. Optimized for scalability and performance.",
       image: "/Projects/EnergyHub.png",
-      link: "https://energyhub.events/",
+      link: "https://energy-club-muhannads-projects-bfa16e19.vercel.app/",
       tech: ["NextJS", "Firebase", "i18n"]
     },
     {
